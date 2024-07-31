@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative 'mmap/version'
-
 # The Mmap class implement memory-mapped file objects
 #
 # Most of these methods have the same syntax than the methods of String
@@ -9,6 +7,7 @@ require_relative 'mmap/version'
 # === WARNING
 # === The variables $' and $` are not available with gsub! and sub!
 require 'mmap/mmap'
+require_relative 'mmap/version'
 
 class Mmap
   include Comparable
