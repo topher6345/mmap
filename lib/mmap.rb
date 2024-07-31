@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require_relative 'mmap/version'
+
 # The Mmap class implement memory-mapped file objects
 #
 # Most of these methods have the same syntax than the methods of String
@@ -9,8 +13,6 @@ require 'mmap/mmap'
 class Mmap
   include Comparable
   include Enumerable
-
-  VERSION = '0.2.6'
 
   def clone # :nodoc:
     raise TypeError, "can't clone instance of #{self.class}"
@@ -33,8 +35,8 @@ class Mmap
   #    each(rs = $/, &block)
   #
   # iterate on each line
-  def each_line(*args, &block)
-    to_str.each_line(*args, &block)
+  def each_line(...)
+    to_str.each_line(...)
   end
 
   # call-seq: each_byte(&block)
@@ -43,19 +45,19 @@ class Mmap
   def each_byte(&block)
     to_str.each_byte(&block)
   end
-  alias :each :each_byte
+  alias each each_byte
 
   private
 
   def process_options(options)
     options.each do |k, v|
       case k
-      when "length" then set_length v
-      when "offset" then set_offset v
-      when "advice" then set_advice v
-      when "increment" then set_increment v
-      when "initialize" # skip
-      when "ipc" then set_ipc v
+      when 'length' then set_length v
+      when 'offset' then set_offset v
+      when 'advice' then set_advice v
+      when 'increment' then set_increment v
+      when 'initialize' # skip
+      when 'ipc' then set_ipc v
       else
         warn "Unknown option #{k}"
       end
