@@ -342,7 +342,7 @@ mm_str(VALUE obj, int modify)
     ret = rb_obj_alloc(rb_cString);
     RSTRING(ret)->as.heap.ptr = i_mm->t->addr;
     RSTRING(ret)->as.heap.aux.capa = i_mm->t->len;
-    RSTRING(ret)->as.heap.len = i_mm->t->real;
+    RSTRING(ret)->len = i_mm->t->real;
 
     if (modify & MM_ORIGIN)
     {
@@ -1441,7 +1441,7 @@ mm_gsub_bang_int(VALUE arg)
         }
         memcpy(RSTRING_PTR(str) + start + BEG(match, 0),
                RSTRING_PTR(val), RSTRING_LEN(val));
-        RSTRING(str)->as.heap.len += RSTRING_LEN(val) - plen;
+        RSTRING(str)->len += RSTRING_LEN(val) - plen;
 
         i_mm->t->real = RSTRING_LEN(str);
         if (BEG(match, 0) == END(match, 0))
